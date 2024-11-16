@@ -1,0 +1,3 @@
+uvicorn app.main:app --reload
+ws://localhost:8000/exampleSlug1
+ws://localhost:8000/exampleSlug2

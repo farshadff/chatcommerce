@@ -1,6 +1,11 @@
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 from typing import Dict, List
 
+from sqlalchemy.exc import SQLAlchemyError
+
+from app.db import DB
+from app.db.message import Message
+
 router = APIRouter()
 
 # Dictionary to store active chat connections and panel connections by slug
@@ -31,9 +36,26 @@ async def chat_websocket(websocket: WebSocket, slug: str):
 
     try:
         while True:
-
             data = await websocket.receive_text()
+            chat_data = {
+                "slug": data,
+                "message": "test",
+                "sender": 1,
+            }
+            # new_chat = Message(**chat_data)
+            # items = DB.create(new_chat)
+            try:
+                # Create a new Organization instance and populate its attributes
+                new_chat = Message(**chat_data)
+                _id = DB.create(new_chat)
+            except SQLAlchemyError as e:
+                print(f"Database error occurred: {e}")
+                # Handle the error, log it, or pass it up the stack as appropriate
+
             # Broadcast message to both chat and panel clients
+            print("==============")
+            print("==============")
+            print("==============")
             print(data)
             await broadcast_message(slug, data)
     except WebSocketDisconnect:

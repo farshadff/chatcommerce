@@ -19,6 +19,8 @@ async def chat_websocket(websocket: WebSocket, slug: str):
     print("=============")
     print("=============")
     print("=============")
+    print("=============")
+    print("=============")
     user = await get_user_by_chat_link(slug)
     if not user:
         await websocket.send_text("Invalid chat link")

@@ -12,11 +12,4 @@ users = Table(
     Column("chat_link", String, unique=True, nullable=False)
 )
 
-# Messages table
-messages = Table(
-    "messages",
-    metadata,
-    Column("id", Integer, primary_key=True, index=True),
-    Column("user_id", Integer, ForeignKey("users.id"), nullable=False),
-    Column("content", Text, nullable=False)
-)
+

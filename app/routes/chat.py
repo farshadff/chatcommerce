@@ -22,6 +22,7 @@ async def broadcast_message(slug: str, message: str, from_panel: bool = False):
 
 @router.websocket("/{slug}")
 async def chat_websocket(websocket: WebSocket, slug: str):
+
     await websocket.accept()
     # Add the client to the chat connections for the given slug
     if slug not in chat_connections:
@@ -30,8 +31,10 @@ async def chat_websocket(websocket: WebSocket, slug: str):
 
     try:
         while True:
+
             data = await websocket.receive_text()
             # Broadcast message to both chat and panel clients
+            print(data)
             await broadcast_message(slug, data)
     except WebSocketDisconnect:
         # Remove the client from chat connections on disconnect

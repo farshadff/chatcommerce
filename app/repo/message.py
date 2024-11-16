@@ -1,5 +1,5 @@
 from app.db.database import database
-from app.models import users, messages
+from app.db.models import users, messages
 
 async def create_user(username: str, mobile: str, chat_link: str):
     query = users.insert().values(username=username, mobile=mobile, chat_link=chat_link)

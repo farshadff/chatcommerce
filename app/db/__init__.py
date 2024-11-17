@@ -36,10 +36,10 @@ class DatabaseDriver:
     def query(self, model, filter_by=None, limit=None, offset=None, order_by=None, email_filter=False):
         session = self.Session()
 
-        default_order_by = desc(model.created_at) if hasattr(model, 'created_at') else desc(model.id)
-
-        if not order_by:
-            order_by = default_order_by
+        # default_order_by = desc(model.created_at) if hasattr(model, 'created_at') else desc(model.id)
+        #
+        # if not order_by:
+        #     order_by = default_order_by
         query = session.query(model)
 
         if filter_by:

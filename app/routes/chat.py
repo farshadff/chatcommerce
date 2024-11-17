@@ -55,6 +55,7 @@ async def chat_websocket(websocket: WebSocket, slug: str):
             shop_item = DB.query(ChatLink, filter_by={"slug": slug})
             # Check if results are not empty
             if shop_item:
+
                 first_result = shop_item[0]  # Get the first item in the list
                 products = DB.query(product, filter_by={"shop_id": first_result.shop_id})
                 for item in products:

@@ -8,6 +8,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from app.db import DB, shop, product
 from app.db.chat_links import ChatLink
 from app.db.message import Message
+from app.db.product import Products
 
 router = APIRouter()
 
@@ -57,9 +58,10 @@ async def chat_websocket(websocket: WebSocket, slug: str):
             if shop_item:
 
                 first_result = shop_item[0]  # Get the first item in the list
-                products = DB.query(product, filter_by={"shop_id": first_result.shop_id})
+                print(first_result.shop_id)
+                products = DB.query(Products, filter_by={"shop_id": first_result.shop_id})
                 for item in products:
-                    print(item.ID)
+                    print(item.name)
             else:
                 print("No records found with slug:", slug)
             await broadcast_message(slug, data)

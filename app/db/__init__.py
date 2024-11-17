@@ -44,13 +44,6 @@ class DatabaseDriver:
 
         if filter_by:
             query = query.filter_by(**filter_by)
-        if email_filter:
-            query = query.filter(
-                or_(
-                    model.email.ilike('%unlocked%'),
-                    model.email.is_(None)
-                )
-            )
         query = query.order_by(order_by)
 
         if limit is not None:

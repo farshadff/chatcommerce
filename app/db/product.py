@@ -9,6 +9,7 @@ class Products(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
+    slug = Column(String)
     description = Column(String)
     shop_id = Column(UUID)
     created_at = Column(DateTime, server_default=func.now(), nullable=False)

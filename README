@@ -8,4 +8,4 @@ CREATE TABLE chat_links (
     shop_id VARCHAR,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
-
+apikey=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
